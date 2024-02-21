@@ -1,2 +1,7 @@
-var title = 'hello word';
-console.log(title.includes('hello'));
+var languages = [
+      '123',
+      'php',
+      'javascript',
+];
+
+console.log(Array.isArray(languages))
