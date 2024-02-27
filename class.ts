@@ -11,11 +11,12 @@ class person{
             this.lastName = last;
       }
 
-      getFulani(): string{
+      getFuname(): string{
             return `${this.firsName}${this.lastName}`;
       }
             
 }
+
 
 
 console.log(">>check class:")
