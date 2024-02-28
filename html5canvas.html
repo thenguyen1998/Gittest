@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>canvas</title>
+</head>
+<script type ="text/javascript" >
+      function ve_duong_thang()
+      {
+            var canvas =document.getElementById("mycanvas");  //truy xuất đén canvas cần vẽ lên
+            var context = canvas.getContext("2d");  //khai báo ngữ cảnh cho ptu canvas
+            
+
+            context.moveTo(0,100); //điem bts đầu vẽ
+            context.lineTo(150,0); //tọa độ điểm kết thúc của đường vẽ
+            context.lineWight = 5; //khai báo dộ rộng của đường thăng cần vẽ
+            context.strokeStyle ="#FF0000"; //màu đường thẳng
+            context.stroke();//bắt đầu vẽ đt
+      }
+function ve_hinh_chu_nhat()
+{
+       let canvas =document.getElementById("mycanvas"); 
+            let context = canvas.getContext("2d");  
+            
+
+            context.lineWight = 5;
+            context.strokeStyle ="#FF0000"; 
+            context.strokeRect(50,50,100,50);
+            context.fillStyle ="#ccc";
+            context.fillRect (50,50,100,50);
+          
+}
+
+
+function ve_hinh_tron()
+{
+let canvas =document.getElementById("mycanvas"); 
+            let context = canvas.getContext("2d");  
+            context.beginPath();
+            context.arc(95,50,45,0,2 * Math.PI);
+            context.stroke();
+}
+
+   function ve_Text()
+    {
+        let canvas = document.getElementById('mycanvas');
+        let context = canvas.getContext('2d');
+        context.font = "30px Arial";
+        context.fillText("hello BINH DINH", 10, 50); 
+    }
+
+</script>
+
+
+<body>
+      <canvas id ="mycanvas" wight ="600" height ="100"style="border:1px solid"></canvas>
+      <section>
+            <input type ="button"value ="vẽ đường thẳng" onClick ="ve_duong_thang()">
+              <input type ="button"value ="vẽ hình chữ nhật" onClick ="ve_hinh_chu_nhat()">
+                <input type ="button"value ="vẽ hình tròn" onClick ="ve_hinh_tron()">
+                <input type ="button"value ="ve Text" onClick ="ve_Text()">
+      </section>
+      
+</body> 
+</html>
