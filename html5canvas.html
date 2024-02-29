@@ -11,12 +11,13 @@
             var canvas =document.getElementById("mycanvas");  //truy xuất đén canvas cần vẽ lên
             var context = canvas.getContext("2d");  //khai báo ngữ cảnh cho ptu canvas
             
-
+       
             context.moveTo(0,100); //điem bts đầu vẽ
             context.lineTo(150,0); //tọa độ điểm kết thúc của đường vẽ
             context.lineWight = 5; //khai báo dộ rộng của đường thăng cần vẽ
             context.strokeStyle ="#FF0000"; //màu đường thẳng
             context.stroke();//bắt đầu vẽ đt
+      
       }
 function ve_hinh_chu_nhat()
 {
@@ -36,7 +37,8 @@ function ve_hinh_chu_nhat()
 function ve_hinh_tron()
 {
 let canvas =document.getElementById("mycanvas"); 
-            let context = canvas.getContext("2d");  
+            let context = canvas.getContext("2d"); 
+             
             context.beginPath();
             context.arc(95,50,45,0,2 * Math.PI);
             context.stroke();
@@ -60,6 +62,7 @@ let canvas =document.getElementById("mycanvas");
               <input type ="button"value ="vẽ hình chữ nhật" onClick ="ve_hinh_chu_nhat()">
                 <input type ="button"value ="vẽ hình tròn" onClick ="ve_hinh_tron()">
                 <input type ="button"value ="ve Text" onClick ="ve_Text()">
+                 
       </section>
       
 </body> 

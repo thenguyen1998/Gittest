@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+<script type ="text/javascript" >
+    function ve_duong_cong()
+    {
+          var canvas =document.getElementById("mycanvas");  
+          var context = canvas.getContext("2d");  
+         
+        context.beginPath();  
+        context.arc(50,50,50,Math.PI,false);
+        context.stroke();
+    }
+
+      function ve_duong_cong_bezier()
+    {
+       
+        
+
+        
+        var mycanvas =document.getElementById("mycanvas"); 
+         
+        var context = mycanvas.getContext("2d");  
+         context.lineWight = 6;
+         context.beginPath();
+         context.moveTo(10,150);
+         context.quadraticCurveTo(20,40,180,190);  
+         context.strokeStyle="red";
+         context.fillStyle="blue";
+         context.stroke();  
+         context.fill();
+        } 
+    
+        function randomCircle() 
+        {
+            var mycanvas =document.getElementById("mycanvas"); 
+             var context = mycanvas.getContext("2d"); 
+    for (let i = 0; i < 3; i++) {
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        context.beginPath();
+        context.arc(x, y, 30, 0, Math.PI * 2, false);
+        context.strokeStyle = 'red';
+        context.stroke();
+    }
+}
+function shapeRectangle() {
+    var mycanvas =document.getElementById("mycanvas"); 
+    var context = mycanvas.getContext("2d"); 
+    context.fillStyle = 'rgba(255,0,0,0.5)';
+    context.fillRect(100, 100, 100, 100);
+    context.clearRect(120, 120, 60, 60);
+    context.strokeRect(125, 125, 50, 50);
+    context.fillStyle = 'rgba(0,0,255,0.5)';
+    context.fillRect(200, 100, 50, 100);
+    context.fillStyle = 'rgba(0 0 20 / 50%)';
+    context.fillRect(200, 100, 50, 50);
+}
+
+var x = 200;
+function drawBall() {
+    var canvas =document.getElementById("mycanvas");  
+    var context = canvas.getContext("2d");  
+    requestAnimationFrame(drawBall);
+    context.beginPath();
+    context.arc(x, 200, 30, 0, Math.PI * 2, false);
+    context.clearRect(0, 0, innerWidth, innerHeight);
+    context.strokeStyle = 'red';
+    context.stroke();
+
+    x += 2;
+
+}
+
+  
+    </script>
+<body>
+
+    <canvas id ="mycanvas" width ="800" height ="500"style="border:1px solid"></canvas>
+      <section>
+            <input type ="button"value ="vẽ đường cong" onClick ="ve_duong_cong()"/>
+            <input type ="button"value ="vẽ đường cong bezier" onClick ="ve_duong_cong_bezier()"/>
+            <input type ="button"value ="randomCircle" onClick ="randomCircle()"/>
+            <input type ="button"value ="shapeRectangle" onClick ="shapeRectangle()"/>
+            <input type ="button"value ="drawBall" onClick ="drawBall()"/>
+        </section>
+</body>
+</html>
