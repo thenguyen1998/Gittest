@@ -24,6 +24,7 @@ function vehinhtron() : void {
             ctx.beginPath();
             ctx.arc(95,50,45,0,2 * Math.PI);
             ctx.stroke();
+            
 
         }else {
             console.error("Context không được hỗ trợ");
