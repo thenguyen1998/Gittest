@@ -45,3 +45,50 @@ function xoay() {
     ctx.fillStyle = "rgb(255 128 255 / 50%)";
     ctx.fillRect(0, 50, 100, 100);
   }
+
+
+function van_toc(){
+  const ctx = document.getElementById("canvas").getContext("2d");
+      
+        var x = canvas.width / 2;
+        var y = canvas.height / 2;
+
+     
+        var vx = 2; 
+        var vy = -2; 
+
+        
+        var ax = 0.1; 
+        var ay = 0.1;
+
+        function draw() {
+           
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fillStyle = 'blue';
+            ctx.fill();
+            ctx.closePath();
+
+            
+            vx += ax;
+            vy += ay;
+
+           
+            x += vx;
+            y += vy;
+
+            
+            if (x + vx > canvas.width || x + vx < 0) {
+                vx = -vx;
+            }
+            if (y + vy > canvas.height || y + vy < 0) {
+                vy = -vy;
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        draw();
+      }
