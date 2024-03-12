@@ -1,97 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Key Events</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-      <div id = "hello"></div>
-      <script>
-     let h1 = document.getElementById('hello');
-     h1.innerHTML = 'hello 77 Binh Dinh'
+    <canvas id="myCanvas" width="400" height="400"></canvas>
 
-     h1.style.color = 'red';
+    <script>
+        // Lấy đối tượng canvas và context
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        let x = 50;
+        let y = 50;
 
-     h1.style.fontSize = '50px';
+        // Hàm vẽ hình chữ nhật
+        function drawRectangle() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Xóa canvas trước khi vẽ
+            ctx.fillRect(x, y, 50, 50); // Vẽ hình chữ nhật tại vị trí x, y
+        }
 
-     h1.style.fontWieght = 'bold';
-
-     h1. style.backgroundColor = 'blue';
-
-
-
-
-     function image(){
-    var mycanvas =document.getElementById("mycanvas"); 
-         
-    var ctx = mycanvas.getContext("2d");
-
-const image = new Image();
-image.src = "";
-
-image.onload = () => {
-  // Vẽ hình ảnh lên canvas
-  ctx.drawImage(image, 0, 0);
-
-  // Cắt hình ảnh
-  ctx.drawImage(image, 100, 100, 200, 200, 0, 0, 100, 100);
-
-  // Thêm hiệu ứng
-  ctx.filter = "blur(5px)";
-  ctx.drawImage(image, 200, 200, 100, 100);
-};
-}
-
-
-
-
-
-function isPrime(number){
-
-      let isPrimeNumber = true;
-
-      for (let i = 2 ; i<= Math.sqrt(number); i++){
-            if (number%i ==0){
-
-                  isPrimeNumber = false;
-
-                  break;
+        // Hàm xử lý sự kiện keydown
+        function handleKeyDown(event) {
+            switch (event.key) {
+                case 'ArrowUp':
+                    y -= 10; // Di chuyển lên
+                    break;
+                case 'ArrowDown':
+                    y += 10; // Di chuyển xuống
+                    break;
+                case 'ArrowLeft':
+                    x -= 10; // Di chuyển sang trái
+                    break;
+                case 'ArrowRight':
+                    x += 10; // Di chuyển sang phải
+                    break;
             }
-      }
-      return isPrimeNumber
-}
+            drawRectangle(); // Vẽ lại hình chữ nhật sau khi di chuyển
+        }
 
+        // Xử lý sự kiện keydown
+        window.addEventListener('keydown', handleKeyDown);
 
-
-let isPrimeNumber =[];
-
-console.log(isPrimeNumber); 
-
-isPrimeNumber.push(11);
-
-isPrimeNumber.push(17);
-
-console.log(isPrimeNumber); 
- 
-
-function getPrimesNumber(from , to){
-
-      let primes = [];
-
-      for (let index = from ; index<= to ;index ++){
-            if (isPrime(index)){
-
-                  primes.push(index);
-            }
-      }
-      return primes;
-}
-
-console.log(getPrimesNumber(10,100));
-
-
-      </script>
-      
+        // Vẽ hình chữ nhật ban đầu
+        drawRectangle();
+    </script>
 </body>
 </html>
