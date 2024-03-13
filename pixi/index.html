@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixiJS Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+</head>
+<body>
+    <script>
+        let app, player;
+        let keysDown = {};
+
+        window.onload = function() {
+            app = new PIXI.Application({
+                width: 800,
+                height: 600,
+                backgroundColor: 0xAAAAAA
+            });
+
+            document.body.appendChild(app.view);
+            
+            // Player object
+            player = PIXI.Sprite.from("image/player.png");
+            player.anchor.set(0.5);
+            player.x = app.view.width / 2;
+            player.y = app.view.height / 2;
+            app.stage.addChild(player);
+
+            // Mouse interactions
+            app.stage.interactive = true;
+            app.stage.on("pointermove", movePlayer);
+
+            // Keyboard events
+            window.addEventListener('keydown', onKeyDown);
+            window.addEventListener('keyup', onKeyUp);
+        }
+
+        function movePlayer(e) {
+            let pos = e.data.global;
+            player.x = pos.x;
+            player.y = pos.y;
+        }
+
+        function onKeyDown(e) {
+            keysDown[e.keyCode] = true;
+           
+            if (keysDown[37]) { 
+                player.x -= 5;
+            }
+            if (keysDown[38]) { 
+                player.y -= 5;
+            }
+            if (keysDown[39]) { 
+                player.x += 5;
+            }
+            if (keysDown[40]) { 
+                player.y += 5;
+            }
+        }
+
+        function onKeyUp(e) {
+            delete keysDown[e.keyCode];
+        }
+    </script>
+</body>
+</html>
