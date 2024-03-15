@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixiJS Simple Game</title>
+    <script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script>
+    
+        const app = new PIXI.Application({ 
+            width: 800, 
+            height: 600,                       
+            backgroundColor: 0x1099bb
+        });
+        document.body.appendChild(app.view);
+
+        const character = new PIXI.Graphics();
+        character.beginFill(0xFF0000);
+        character.drawRect(0, 0, 50, 50);
+        character.endFill();
+        character.x = 100;
+        character.y = 100;
+        app.stage.addChild(character);
+
+        const obstacle = new PIXI.Graphics();
+        obstacle.beginFill(0x00FF00);
+        obstacle.drawRect(-25, -25, 50, 50); 
+        obstacle.endFill();
+        obstacle.x = 400;
+        obstacle.y = 300;
+        app.stage.addChild(obstacle);
+        const moveSpeed = 5;
+        let obstacleRotationSpeed = 0.1;
+
+        app.ticker.add(() => {
+     
+            character.x += (character.vx || 0);
+            character.y += (character.vy || 0);
+
+            character.x = Math.max(0, Math.min(app.screen.width - character.width, character.x));
+            character.y = Math.max(0, Math.min(app.screen.height - character.height, character.y));
+            obstacle.rotation += obstacleRotationSpeed;
+
+            if (hitTestRectangle(character, obstacle)) {
+           
+                if (character.vx > 0 && character.x + character.width > obstacle.x - obstacle.width / 2) {
+                    character.vx = 0;
+                    character.x = obstacle.x - obstacle.width / 2 - character.width;
+                } else if (character.vx < 0 && character.x < obstacle.x + obstacle.width / 2) {
+                    character.vx = 0;
+                    character.x = obstacle.x + obstacle.width / 2;
+                }
+                if (character.vy > 0 && character.y + character.height > obstacle.y - obstacle.height / 2) {
+                    character.vy = 0;
+                    character.y = obstacle.y - obstacle.height / 2 - character.height;
+                } else if (character.vy < 0 && character.y < obstacle.y + obstacle.height / 2) {
+                    character.vy = 0;
+                    character.y = obstacle.y + obstacle.height / 2;
+                }
+            }
+        });
+
+       
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                character.vx = -moveSpeed;
+            } else if (e.key === 'ArrowRight') {
+                character.vx = moveSpeed;
+            } else if (e.key === 'ArrowUp') {
+                character.vy = -moveSpeed;
+            } else if (e.key === 'ArrowDown') {
+                character.vy = moveSpeed;
+            }
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+                character.vx = 0;
+            } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                character.vy = 0;
+            }
+        });
+
+        function hitTestRectangle(r1, r2) {
+            return r1.x < r2.x + r2.width / 2 &&
+                r1.x + r1.width > r2.x - r2.width / 2 &&
+                r1.y < r2.y + r2.height / 2 &&
+                r1.y + r1.height > r2.y - r2.height / 2;
+        }
+    </script>
+</body>
+</html>
